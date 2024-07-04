@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/customersFragment">
+
+    <fragment
+        android:id="@+id/customersFragment"
+        android:name="com.example.tsfbankapp.fragments.CustomersFragment"
+        android:label="fragment_customers"
+        tools:layout="@layout/fragment_customers">
+        <action
+            android:id="@+id/action_customersFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/transactionRecordFragment"
+        android:name="com.example.tsfbankapp.fragments.TransactionRecordFragment"
+        android:label="fragment_transaction_record"
+        tools:layout="@layout/fragment_transaction_record" />
+
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.tsfbankapp.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="customer"
+            app:argType="com.example.tsfbankapp.model.Customer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_transactionsFragment"
+            app:destination="@id/transactionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/detailsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.example.tsfbankapp.fragments.TransactionsFragment"
+        android:label="fragment_transactions"
+        tools:layout="@layout/fragment_transactions" >
+        <argument
+            android:name="transferAmount"
+            app:argType="integer" />
+        <argument
+            android:name="customer"
+            app:argType="com.example.tsfbankapp.model.Customer" />
+        <action
+            android:id="@+id/action_transactionsFragment_to_successfulTransactionFragment"
+            app:destination="@id/successfulTransactionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/transactionsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/successfulTransactionFragment"
+        android:name="com.example.tsfbankapp.fragments.SuccessfulTransactionFragment"
+        android:label="fragment_successful_transaction"
+        tools:layout="@layout/fragment_successful_transaction">
+
+        <argument
+            android:name="senderCustomer"
+            app:argType="com.example.tsfbankapp.model.Customer" />
+        <argument
+            android:name="receiverCustomer"
+            app:argType="com.example.tsfbankapp.model.Customer" />
+        <argument
+            android:name="transferAmount"
+            app:argType="integer" />
+
+
+        <action
+            android:id="@+id/action_successfulTransactionFragment_to_customersFragment"
+            app:destination="@+id/customersFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/customersFragment"/>
+
+    </fragment>
+
+</navigation>
